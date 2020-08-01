@@ -90,7 +90,7 @@ export const Loading = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    overflow: hidden;
+    visibility: hidden;
     opacity:0;
     padding:0px 50px;
     transition:0.3s;

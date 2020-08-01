@@ -18,11 +18,13 @@ function ModalHandler({mensage,request,initRequest}){
     const [disabled,setDisabled] = useState(true);
    
     useEffect(()=>{
-        initRequest(false);
-        setDisabled(false);
-        setTimeout(()=>{
-            setDisabled(true);
-        },5000);
+        if(mensage.mensage !== ""){
+            initRequest(false);
+            setDisabled(false);
+            setTimeout(()=>{
+                setDisabled(true);
+            },5000);
+        }
     },[mensage,initRequest]);
 
     return (

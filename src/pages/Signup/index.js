@@ -5,6 +5,8 @@ import { IoIosRocket } from "react-icons/io";
 import { MaxContainer } from '../../util/style-frame';
 import { FaLinkedin, FaGithubSquare, FaInstagram } from "react-icons/fa";
 import Auth from '../../api/auth';
+import { Link } from 'react-router-dom';
+
 
 function Signup (){
     const [data,setData] = useState({username:"",password:"",nickname:""});
@@ -18,7 +20,7 @@ function Signup (){
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        const response = await Auth.createNewUserAcess(data);
+        await Auth.createNewUserAcess(data);
     }
 
     return (
@@ -73,7 +75,7 @@ function Signup (){
             <Cadastro>
                 <h3 className="title">
                     Já é cadastrado ?
-                    <a href="#"> Clique aqui, e faça login!</a>
+                    <Link to="/signin"> Clique aqui, e faça login!</Link>
                 </h3>
             </Cadastro>
     

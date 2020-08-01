@@ -1,5 +1,5 @@
 import React from 'react';
-import Signup from './pages/Signup';
+import Routes from './routes';
 import {Provider} from 'react-redux';
 import store from './store'
 import ModalHandler from './components/ModalHandler';
@@ -7,7 +7,7 @@ import ModalHandler from './components/ModalHandler';
 function App() {
   return (
       <Provider store={store}>
-        <Signup />
+        <Routes />
         <ModalHandler />
       </Provider>
   );

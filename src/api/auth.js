@@ -10,8 +10,11 @@ const TOKEN_NAME = 'Authorization';
 
 class Utils {
     static setToken(token){
-        localStorage.setItem(TOKEN_NAME,token.data.access_token);
-        return token.data.access_token;
+        return localStorage.setItem(TOKEN_NAME,token.data.access_token);
+    }
+
+    static getToken(){
+        return localStorage.getItem(TOKEN_NAME);
     }
 
     static clearToken(){
@@ -42,9 +45,11 @@ class Auth extends Utils{
         const response = await api.post('/auth/signin',data).catch(function(err){});
         if(!response){
             Auth.clearToken();
-            return Auth.mensageError('Usuário ou senha inválidos');
+            Auth.mensageError('Usuário ou senha inválidos');
+            return false;
         }
-        return Auth.setToken(response);
+        Auth.setToken(response);
+        return window.location = '/';
     }
 
     async createNewUserAcess(data){
@@ -52,12 +57,21 @@ class Auth extends Utils{
         const response = await api.post('/auth/signup',data).catch(function(err){});
         if(!response){
             Auth.clearToken();
-            return Auth.mensageError('Já existe um usuário com este nome');
-            
+            Auth.mensageError('Já existe um usuário com este nome');
+            return false;
         }
-        return Auth.mensageSucess('Usuário cadastrado! Vá para a tela de login e acesse a plataforma.');
+        Auth.mensageSucess('Usuário cadastrado! Vá para a tela de login e acesse a plataforma.');
+        return true;
     }
 
+    validateUser(){
+        const token = Auth.getToken();
+        if(!token){
+            return false;
+        }
+        return true;
+    }
+    
 }
 
 
