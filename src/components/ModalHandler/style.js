@@ -15,9 +15,9 @@ export const ModalContainer = styled.div`
     position:fixed;
     width:320px;
     z-index:1000;
-    top:50%;
+    top:10px;
     left:50%;
-    transform:translate(-50%, -50%);
+    transform:translateX(-50%);
     opacity:1;
     visibility:hidden;
     transition:0.3s;
@@ -94,6 +94,7 @@ export const Loading = styled.div`
     opacity:0;
     padding:0px 50px;
     transition:0.3s;
+    z-index:1000;
 
     &[aria-dropeffect="true"]{
       opacity:1;

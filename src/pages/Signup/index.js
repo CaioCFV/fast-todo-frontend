@@ -4,7 +4,7 @@ import { FullContainer, FormContainer, PageDescription, Logo, Button, Cadastro, 
 import { IoIosRocket } from "react-icons/io";
 import { MaxContainer } from '../../util/style-frame';
 import { FaLinkedin, FaGithubSquare, FaInstagram } from "react-icons/fa";
-import Auth from '../../api/auth';
+import { Auth } from '../../api';
 import { Link } from 'react-router-dom';
 
 

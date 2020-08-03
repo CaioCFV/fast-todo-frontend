@@ -7,6 +7,7 @@ export const FullContainer = styled.main`
     align-items:center;
     justify-content:center;
     flex-direction:column;
+    padding: 50px 0px;
 `;
 
 export const Logo = styled.h1`
