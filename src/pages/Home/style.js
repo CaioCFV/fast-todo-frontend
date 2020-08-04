@@ -4,6 +4,16 @@ export const FullContainer = styled.main`
     background: var(--theme-color-1);
     min-height:100vh;
     padding:20px 0px;
+
+    &>div{
+        display:flex;
+    }
+
+    @media all and (max-width:991px){
+        &>div{
+            flex-direction:column-reverse;
+        }
+    }
 `;
 
 export const FormCreateTask = styled.form`
@@ -16,13 +26,24 @@ export const FormCreateTask = styled.form`
 
     button{
         background: var(--theme-color-1);
-    border: unset;
-    color: var(--theme-color-2);
-    padding: 0px 20px;
-    margin-left: 10px;
-    font-weight: 400;
-    border-radius: 5px;
-    text-transform: uppercase;
+        border: unset;
+        color: var(--theme-color-2);
+        padding: 0px 20px;
+        margin-left: 10px;
+        font-weight: 400;
+        border-radius: 5px;
+        text-transform: uppercase;
+    }
+    @media all and (max-width:567px){
+        flex-direction:column;
+        padding: 0px;
+        background:unset;
+
+        button{
+            margin:10px auto 0;
+            height:40px;
+            width:100%;
+        }
     }
 `;
 

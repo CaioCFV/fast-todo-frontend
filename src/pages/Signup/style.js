@@ -50,6 +50,10 @@ export const FormContainer = styled.form`
     fieldset + fieldset{
         margin-top:20px;
     }
+
+    @media all and (max-width:567px){
+        padding: 40px 30px;
+    }
 `;
 
 
@@ -95,6 +99,11 @@ export const Cadastro = styled.div`
         color:#fff;
         font-weight:300;
         text-decoration:none;
+    }
+    @media all and (max-width:567px){
+        h3,a{
+            display:block;
+        }
     }
 `;
 

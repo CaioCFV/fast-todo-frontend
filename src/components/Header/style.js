@@ -54,9 +54,30 @@ export const Logo = styled.h1`
         margin:0 auto 10px;
         opacity:0.5;
     }
+
+        
+    @media all and (max-width:567px){
+       font-size:15px;
+       max-width:100px;
+
+       span{
+           font-size:9px;
+       }
+
+       .logo-icon{
+           font-size:30px;
+       }
+       span:before{
+            margin: 3px 0px 8px;
+            width:100%;
+       }
+    }
+    
 `;
 
 
 export const User = styled.p`
-
+     @media all and (max-width:567px){
+         display:none;
+     }
 `;

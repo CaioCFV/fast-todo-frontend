@@ -73,7 +73,7 @@ class Authenticate{
         const response = await api.post('/auth/signin',data);
         if(validateResponse(response)){
             setToken(response);
-            return window.location.href = '/';
+            return window.location = '/';
         }
     }
 

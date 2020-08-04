@@ -6,6 +6,9 @@ import InputField from '../../components/InputField';
 import { MaxContainer } from '../../util/style-frame';
 import { FiPlusCircle } from "react-icons/fi";
 import Header from '../../components/Header';
+import TaskStatus from '../../components/TaskStatus';
+
+
 
 function Home (){
 
@@ -13,6 +16,7 @@ function Home (){
     const [data, setData] = useState({name:"",done:false, date:new Date()});
     const [toggler, setToggler] = useState(false);
 
+    
     useEffect(()=>{
         async function fetchData(){
             const response = await Task.getTasks();
@@ -40,6 +44,32 @@ function Home (){
 
     const handleToggler = () => {
         setToggler(toggler ? false:true)
+    }   
+
+    const updateTask = async (item) =>{ 
+        let newDone = {};
+        const newTasks = tasks.map(it=>{
+            if(item._id === it._id){
+                newDone = {...it,done:it.done === "false" ? "true":"false"};
+                return {...it,done:it.done === "false" ? "true":"false"};
+            }else{
+                return it;
+            }
+        });
+        console.log(newTasks)
+        const response = await Task.update(item._id,{done:newDone.done});
+        if(response){
+            setTasks(newTasks)
+        }
+    }
+
+    const deleteTask = async (_id) =>{
+        const response = await Task.delete(_id);
+        if(response){
+            setTasks(()=> {
+                return tasks.filter((item)=>item._id !== _id);
+            });
+        }
     }
 
     return (
@@ -68,9 +98,10 @@ function Home (){
                     </TogglerTask>
 
                     {tasks.map((item,i)=>{
-                        return <ListTask key={i} {...item} />
+                        return <ListTask key={i} {...item} updateTask={updateTask} deleteTask={deleteTask}/>
                     })}
                 </ContainerTask>
+                <TaskStatus data={tasks} />
             </MaxContainer>
         </FullContainer>
     );                 

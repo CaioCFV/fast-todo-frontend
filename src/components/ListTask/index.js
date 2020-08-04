@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import formatedDate from '../../util/formatedDate';
 import { TaskItem, TaskName, TaskContainerUpdate, TaskStatus, TaskControls } from './style';
 import { FiEdit } from "react-icons/fi";
@@ -6,11 +6,9 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 import { BsFillXCircleFill } from "react-icons/bs";
 import { Task } from '../../api';
 
-function ListTask ({name, done, date, _id}){
-
-    const [data,setData] = useState({name:name,done:done});
+function ListTask ({name, done, date, _id, updateTask, deleteTask}){
+    const [data,setData] = useState({name:name});
     const [update, setUpdate] = useState(false);
-    const [display,setDisplay] = useState('flex');
     const [showName, setName] = useState(name);
 
     const handleInput = (e)=>{
@@ -24,16 +22,6 @@ function ListTask ({name, done, date, _id}){
         setUpdate(()=>update === false ? true:false);
     }
 
-    const updateTask = async () =>{
-        const newDone = {done:data.done === 'true' ? 'false':'true'};
-        const response = await Task.update(_id,newDone);
-        if(response){
-            setData(()=>{
-                return {...data,done:newDone.done};
-            });
-        }
-    }
-
     const updateName = async () =>{
         const response = await Task.update(_id,{name:data.name});
         if(response){
@@ -42,18 +30,12 @@ function ListTask ({name, done, date, _id}){
         }
     }
 
-    const deleteTask = async () =>{
-        const response = await Task.delete(_id);
-        if(response){
-            setDisplay(()=>{
-                return "none";
-            });
-        }
-    }
-
+    useEffect(()=>{
+        setName(name)
+    },[name])
     return (
         <>
-            <TaskItem style={{display:display}}>
+            <TaskItem>
                 <TaskName>
                     <TaskContainerUpdate aria-controls={update}>
                         <textarea name="name" id="taskname" onChange={handleInput} value={data.name}>{data.name}</textarea>
@@ -63,24 +45,25 @@ function ListTask ({name, done, date, _id}){
                     <p>{showName}</p>
                     <span className="date">Criado em: {formatedDate(date)}</span>
                 </TaskName>
-                <TaskStatus className="status" aria-controls={data.done}>
+                <TaskStatus className="status" aria-controls={done}>
                     <p>status</p>
                     <span></span>
                 </TaskStatus>
-                <TaskControls className="controls" aria-controls={data.done}>
+                
+                <TaskControls className="controls" aria-controls={done}>
                     <button className="container-texto" onClick={handleUpdate}>
                         <FiEdit className="edit"/>
                         <span>editar</span>
                     </button>
-                    <button className="container-texto" onClick={deleteTask}>
+                    <button className="container-texto" onClick={()=>deleteTask(_id)}>
                         <BsFillXCircleFill className="delete"/>
                         <span>excluir</span>
                     </button>
-                    <button className="container-texto concluir" onClick={updateTask} >
+                    <button className="container-texto concluir" onClick={()=>updateTask({name, done, date, _id})} >
                         <IoIosCheckmarkCircle className="ok"/>
                         <span>concluir</span>
                     </button>
-                    <button className="container-texto reabrir" onClick={updateTask} >
+                    <button className="container-texto reabrir" onClick={()=>updateTask({name, done, date, _id})} >
                         <IoIosCheckmarkCircle className="ok" />
                         <span>reabrir</span>
                     </button>

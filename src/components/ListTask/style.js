@@ -10,6 +10,12 @@ export const TaskItem = styled.li`
     &+ li{  
         border-top:1px solid var(--theme-color-3);
     }
+
+    @media all and (max-width:567px){
+        flex-wrap:wrap;
+        justify-content:center;
+        padding: 20px 0;
+    }
 `;
 
 export const TaskName = styled.div`
@@ -32,12 +38,16 @@ export const TaskName = styled.div`
         color: var(--theme-color-7);
     }
 
+    @media all and (max-width:567px){
+        margin:0;
+        text-align:center;
+    }
+
 `;
 
 export const TaskStatus = styled.div`
-    width: 200px;
     text-align: center;
-    margin-right: 20px;
+    margin-right: 30px;
 
 
     p{
@@ -57,6 +67,11 @@ export const TaskStatus = styled.div`
 
     &[aria-controls="true"] span{
         background:var(--theme-color-sucess);
+    }
+
+    @media all and (max-width:567px){
+        margin:20px 0;
+        text-align:center;
     }
 `;
 
@@ -112,6 +127,17 @@ export const TaskContainerUpdate = styled.div`
         background: var(--theme-color-error);
         color: var(--theme-color-3);
     }
+    @media all and (max-width:567px){
+        flex-direction:column;
+
+        textarea{
+            margin:0;
+        }
+        button{
+            width: 90%;
+            margin: 0px 0px 5px 0px;
+        }
+    }
 `;
 export const TaskControls = styled.div`
     width: 300px;
@@ -160,7 +186,6 @@ export const TaskControls = styled.div`
         width: 42px;
         text-align: center;
         display: block;
-        margin-top: 5px;
     }
 
     &[aria-controls="true"] .reabrir{
@@ -169,5 +194,13 @@ export const TaskControls = styled.div`
 
     &[aria-controls="false"] .concluir{
         display:block;
+    }
+
+    @media all and (max-width:567px){
+        width:100%;
+        justify-content:space-between;
+        background: var(--theme-color-2);
+        padding: 10px;
+        border-radius:10px;
     }
 `;
