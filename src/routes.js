@@ -12,13 +12,7 @@ const Routes = () =>{
             <ProtectedRoute exact path="/" component={Home}/>
             <Route  path="/signin" component={Signin} />
             <Route  path="/signup" component={Signup} />
-            <ProtectedRoute component={Home}/>
-            {/* <ProtectedRoute  path="/company" component={Company} />
-            <ProtectedRoute  path="/prospect" component={Prospect} />
-            <ProtectedRoute  path="/campaign" component={Campaign} />
-            <ProtectedRoute  path="/task" component={Task} />
-            <ProtectedRoute  path="/emails" component={Email} /> 
-            <ProtectedRoute  path="/downloads" component={Downloads} />  */}
+             <Route path="*" component={Home} />
           </Switch>
         </BrowserRouter>
       )
